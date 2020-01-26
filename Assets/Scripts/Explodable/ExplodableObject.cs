@@ -6,46 +6,41 @@ public class ExplodableObject : MonoBehaviour
 {
 
     private float m_TerrainRevealRadius = 30.0f;
-    private static float m_TimeOfLastSFX = 0.0f;
 
-    private int timeDlay = 3;
+    private float m_ExecutionDelay = 3.0f;
+
+    [SerializeField] GameObject ParticleSystem;
 
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine("WaitForDelay");
+        Destroy(gameObject, m_ExecutionDelay);
+    }
 
+    IEnumerator WaitForDelay()
+    {
+        yield return new WaitForSeconds(m_ExecutionDelay); 
+        HurtSurroundingPlayers();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Destroy(this.gameObject, timeDlay);
+
     }
 
-    void OnDestroy()
+    private void HurtSurroundingPlayers()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, m_TerrainRevealRadius);
 
         foreach (Collider c in colliders)
         {
-            RevealableTerrain target = c.GetComponent<RevealableTerrain>();
-            
-            if (target != null) {
-                target.PaintAtPosition(transform.position, m_TerrainRevealRadius);
-            }
-
-            RevealableObject theObject = c.GetComponent<RevealableObject>();
-
-            if (theObject != null) {
-               theObject.Reveal();
-            }
 
             PlayerAnimation anim = c.GetComponent<PlayerAnimation>();
             
-            // I would need a trigger to call Fallen which calls the Falling and getting up once 
             if (anim != null) {
                 anim.MakeCharacterFall();
-                // theMovement.m_Animator.SetTrigger("Fallen");
             }
         }
     }
