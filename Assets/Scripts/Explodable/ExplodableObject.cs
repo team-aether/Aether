@@ -40,10 +40,12 @@ public class ExplodableObject : MonoBehaviour
                theObject.Reveal();
             }
 
-            PlayerMovement theMovement = c.GetComponent<PlayerMovement>();
+            PlayerAnimation anim = c.GetComponent<PlayerAnimation>();
             
-            if (theMovement != null) {
-                theMovement.HandleFall();
+            // I would need a trigger to call Fallen which calls the Falling and getting up once 
+            if (anim != null) {
+                anim.MakeCharacterFall();
+                // theMovement.m_Animator.SetTrigger("Fallen");
             }
         }
     }

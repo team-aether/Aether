@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField]
-    private Animator m_Animator;
+    public Animator m_Animator;
 
     [SerializeField]
     private AnimationCurve m_AnimationSpeedCurve;
@@ -39,9 +39,6 @@ public class PlayerAnimation : MonoBehaviour
         if (m_PlayerMovement.GetJumpedInCurrentFrame())
             m_Animator.SetTrigger("Jumping");
 
-        if (m_PlayerMovement.GetFalledInCurrentFrame())
-            m_Animator.SetTrigger("Fallen");
-
         // Set walking animation speed based on players actual velocity. This allows slightly better sync between
         // animation and gameplay.
         if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
@@ -52,4 +49,17 @@ public class PlayerAnimation : MonoBehaviour
                 m_Animator.speed = 1;
         }
     }
+
+    public void MakeCharacterFall() 
+    {
+        StartCoroutine("FallAction");
+    }
+
+    IEnumerator FallAction()
+    {
+        m_Animator.SetTrigger("Fallen");
+        yield return new WaitForSeconds(1);
+        m_Animator.ResetTrigger("Fallen");
+    }
+    
 }

@@ -21,11 +21,6 @@ public class AnimationCallbacks : MonoBehaviour
         m_PlayerMovement.Jump();
     }
 
-    public void FallenCompleted() 
-    {
-        m_Animator.SetBool("Fallen", false);
-    }
-
     public void OnCallChangeFace(string target)
     {
 
