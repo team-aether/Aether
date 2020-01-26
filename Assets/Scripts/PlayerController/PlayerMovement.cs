@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private bool m_IsMidAir;
     private bool m_JumpedInCurrentFrame;
 
+    private bool m_FallingInCurrentFrame;
+
     void Start()
     {
         AetherInput.GetPlayerActions().Jump.performed += HandleJump;
@@ -115,6 +117,11 @@ public class PlayerMovement : MonoBehaviour
         m_IsMidAir = true;
     }
 
+    public void HandleFall() 
+    {
+        m_FallingInCurrentFrame = true;
+    }
+
     public Vector2 GetLastKnownInput()
     {
         return m_LastKnownInput;
@@ -149,5 +156,10 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2 * m_Gravity);
+    }
+
+    public bool GetFalledInCurrentFrame() 
+    {
+        return m_FallingInCurrentFrame;
     }
 }

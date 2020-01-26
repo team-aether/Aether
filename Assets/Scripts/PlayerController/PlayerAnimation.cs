@@ -39,6 +39,9 @@ public class PlayerAnimation : MonoBehaviour
         if (m_PlayerMovement.GetJumpedInCurrentFrame())
             m_Animator.SetTrigger("Jumping");
 
+        if (m_PlayerMovement.GetFalledInCurrentFrame())
+            m_Animator.SetTrigger("Fallen");
+
         // Set walking animation speed based on players actual velocity. This allows slightly better sync between
         // animation and gameplay.
         if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
