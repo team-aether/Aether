@@ -6,12 +6,16 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField]
-    private Animator m_Animator;
+    public Animator m_Animator;
 
     [SerializeField]
     private AnimationCurve m_AnimationSpeedCurve;
 
     private PlayerMovement m_PlayerMovement;
+
+    private float m_FallenDuration = 1.0f;
+
+    private float m_MoveDelay = 2.5f;
 
     void Start()
     {
@@ -49,4 +53,31 @@ public class PlayerAnimation : MonoBehaviour
                 m_Animator.speed = 1;
         }
     }
+
+    public void MakeCharacterFall() 
+    {
+        StartCoroutine("FallAction");
+    }
+
+    IEnumerator FallAction()
+    {
+        yield return StartCoroutine(SetFalls());
+        yield return StartCoroutine(SetMoves());
+    }
+
+    IEnumerator SetFalls() 
+    {
+        m_PlayerMovement.m_cannotMove = true;
+        m_Animator.SetTrigger("Fallen");
+        yield return new WaitForSeconds(m_FallenDuration);
+        m_Animator.ResetTrigger("Fallen");
+    }
+
+    IEnumerator SetMoves()
+    {
+        m_PlayerMovement.m_cannotMove = true;
+        yield return new WaitForSeconds(m_MoveDelay);
+        m_PlayerMovement.m_cannotMove = false;
+    }
+    
 }

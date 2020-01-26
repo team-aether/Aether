@@ -37,16 +37,31 @@ public class PlayerMovement : MonoBehaviour
     private float m_LandingTime = 0;
     private bool m_IsMidAir;
     private bool m_JumpedInCurrentFrame;
+    public bool m_cannotMove; 
 
     void Start()
     {
         AetherInput.GetPlayerActions().Jump.performed += HandleJump;
         m_CharacterController = GetComponent<CharacterController>();
+        m_cannotMove = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // Temporary Hacky Fix 
+        // TODO: Exploded while in air 
+        if (m_cannotMove) 
+        {
+            if (!GetIsGrounded()) 
+            {
+                 m_CharacterController.Move(new Vector3(-1.0f, -1.0f, -1.0f));
+            } 
+
+            return;
+        }
+
         if (GetIsGrounded())
         {
             // Gravity should not accumulate when player is grounded. We set velocity to -2 instead of 0
@@ -70,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
         float t = Time.deltaTime;
         float t2 = t * t;
+
         m_CharacterController.Move(new Vector3(m_Velocity.x, m_Velocity.y * t + 0.5f * GetGravityMagnitude() * t2, m_Velocity.z));
     }
 
