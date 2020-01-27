@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float m_JumpHeight = 1.3f;
 
+    [SerializeField]
+    private GameObject bomb; 
+
     private CharacterController m_CharacterController;
 
     private Vector3 m_Velocity;
@@ -38,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private bool m_IsMidAir;
     private bool m_JumpedInCurrentFrame;
     public bool m_cannotMove; 
+    private float m_bombDelay;
 
     void Start()
     {
@@ -50,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        if (m_bombDelay > 0.0f) 
+        {
+            m_bombDelay -= Time.deltaTime;
+        }
         // Temporary Hacky Fix 
         // TODO: Exploded while in air 
         if (m_cannotMove) 
@@ -127,6 +135,16 @@ public class PlayerMovement : MonoBehaviour
         if (IsRecoveringFromFall())
             return;
 
+        if (m_cannotMove) 
+            return;
+
+        if (m_bombDelay > 0.0f) 
+        {
+            return;
+        }
+
+        Instantiate(bomb, transform.position+(transform.forward*2), transform.rotation);
+        m_bombDelay = ExplodableObject.STANDARD_BOMB_DELAY;
         m_JumpedInCurrentFrame = true;
         m_IsMidAir = true;
     }
@@ -164,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
     // This should be an animation callback for more visually appealing jumps
     public void Jump()
     {
-        m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2 * m_Gravity);
+        // Commented Out For now, need discussion to see whether can implement jumping 
+        // m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2 * m_Gravity);
     }
 }
