@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 4526435887570520905}
   - component: {fileID: 4526435887570520904}
   - component: {fileID: 4526435887570521015}
+  - component: {fileID: 3258896028733207787}
   - component: {fileID: 4526435887570521014}
   - component: {fileID: 4526435887570521013}
   m_Layer: 9
@@ -247,6 +248,20 @@ MonoBehaviour:
     m_Bits: 3072
   m_Gravity: -20
   m_JumpHeight: 2.5
+--- !u!114 &3258896028733207787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526435887570521012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21f36f9eca836940953367188f9e311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bombPrefab: {fileID: 3896627581517248327, guid: aa1f9f9e9e3242948999f69e79014c4e,
+    type: 3}
 --- !u!114 &4526435887570521014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,22 +675,22 @@ PrefabInstance:
     - target: {fileID: 6079326829632867507, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.08471419
+      value: 0.08501238
       objectReference: {fileID: 0}
     - target: {fileID: 6079326829632867507, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.109507
+      value: 0.07124006
       objectReference: {fileID: 0}
     - target: {fileID: 6079326829632867507, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.009367425
+      value: -0.006094003
       objectReference: {fileID: 0}
     - target: {fileID: 6079326829632867507, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9903252
+      value: 0.99381113
       objectReference: {fileID: 0}
     - target: {fileID: 6079326829834129366, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
