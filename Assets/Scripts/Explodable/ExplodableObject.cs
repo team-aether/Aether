@@ -13,8 +13,6 @@ public class ExplodableObject : MonoBehaviour
 
     private bool m_hasExploded = false;
 
-    [SerializeField] GameObject ParticleSystem;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,22 +25,29 @@ public class ExplodableObject : MonoBehaviour
         m_ExecutionDelay -= Time.deltaTime;
         if (m_ExecutionDelay <= 0 && !m_hasExploded) {
             m_hasExploded = true;
-            HurtSurroundingPlayers();
+            Explode();
             Destroy(gameObject);
         }
     }
 
-    private void HurtSurroundingPlayers()
+    private void Explode()
     {
+        // TODO: Implement particle effect with vfx graph
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, m_TerrainRevealRadius);
 
         foreach (Collider c in colliders)
         {
-
-            PlayerAnimation anim = c.GetComponent<PlayerAnimation>();
-            
-            if (anim != null) {
-                anim.MakeCharacterFall();
+            if (c.CompareTag("Player"))
+            {
+                Vector3 finalPosition = c.transform.position + (c.transform.position - this.gameObject.transform.position).normalized * 2;
+                finalPosition.y = c.transform.position.y;
+                c.transform.position = Vector3.Lerp(c.transform.position, finalPosition, 0.6f);
+                PlayerAnimation anim = c.GetComponent<PlayerAnimation>();
+                if (anim != null)
+                {
+                    anim.MakeCharacterFall();
+                }
             }
         }
     }
