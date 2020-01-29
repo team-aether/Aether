@@ -306,7 +306,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""a3a69cf3-847a-4bdc-ab3b-0149c0730cb3"",
                     ""path"": ""<Keyboard>/b"",
-                    ""interactions"": ""Hold(duration=2)"",
+                    ""interactions"": ""Hold(duration=3)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""SetBomb"",
