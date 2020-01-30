@@ -13,6 +13,11 @@ public class PlayerAnimation : MonoBehaviour
 
     private PlayerMovement m_PlayerMovement;
 
+    private const float m_doubleBuffDuration = 5.0f;
+
+    private bool m_hasJumpPower;
+    private bool m_hasSpeedPower;
+
     void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
@@ -48,5 +53,43 @@ public class PlayerAnimation : MonoBehaviour
             else 
                 m_Animator.speed = 1;
         }
+    }
+
+    public bool hasJumpPowerUp() 
+    {
+        return m_hasJumpPower;
+    }
+
+    public bool hasSpeedPowerUp()
+    {
+        return m_hasSpeedPower;
+    }
+
+    public void GoFaster()
+    {
+        StartCoroutine("DoubleUpSpeed");
+    }
+
+    public void JumpHigher()
+    {
+        StartCoroutine("DoubleUpJump");
+    }
+
+    IEnumerator DoubleUpJump()
+    {
+        m_hasJumpPower = true;
+        m_PlayerMovement.SetDoubleJump(true);
+        yield return new WaitForSeconds(m_doubleBuffDuration);
+        m_hasJumpPower = false;
+        m_PlayerMovement.SetDoubleJump(false);
+    }
+
+    IEnumerator DoubleUpSpeed()
+    {
+        m_hasSpeedPower = true;
+        m_PlayerMovement.SetDoubleSpeed(true);
+        yield return new WaitForSeconds(m_doubleBuffDuration);
+        m_hasSpeedPower = false;
+        m_PlayerMovement.SetDoubleSpeed(false);
     }
 }

@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private float m_LandingTime = 0;
     private bool m_IsMidAir;
     private bool m_JumpedInCurrentFrame;
+    private bool m_canDoubleSpeed;
+    private bool m_canDoubleJump;
 
     void Start()
     {
@@ -70,7 +72,29 @@ public class PlayerMovement : MonoBehaviour
 
         float t = Time.deltaTime;
         float t2 = t * t;
-        m_CharacterController.Move(new Vector3(m_Velocity.x, m_Velocity.y * t + 0.5f * GetGravityMagnitude() * t2, m_Velocity.z));
+
+        // m_canDoubleSpeed
+        float xVelocity = m_Velocity.x;
+        float yVelocity = m_Velocity.y * t + 0.5f * GetGravityMagnitude() * t2; 
+        float zVelocity = m_Velocity.z;
+
+        if (m_canDoubleSpeed)
+        {
+            xVelocity *= 2.0f;
+            zVelocity *= 2.0f;
+        }
+
+        if (m_canDoubleJump) 
+        {
+            if (yVelocity < 0) 
+            {
+                yVelocity *= 0.5f;
+            } else {
+                yVelocity *= 2.0f;
+            }
+        }
+
+        m_CharacterController.Move(new Vector3(xVelocity, yVelocity, zVelocity));
     }
 
     private void LateUpdate()
@@ -143,6 +167,26 @@ public class PlayerMovement : MonoBehaviour
     public bool GetJumpedInCurrentFrame()
     {
         return m_JumpedInCurrentFrame;
+    }
+
+    public bool GetDoubleSpeed()
+    {
+        return m_canDoubleSpeed;
+    }
+
+    public void SetDoubleSpeed(bool boolean)
+    {
+        m_canDoubleSpeed = boolean;
+    }
+
+    public bool GetDoubleJump()
+    {
+        return m_canDoubleJump;
+    }
+
+    public void SetDoubleJump(bool boolean)
+    {
+        m_canDoubleJump = boolean;
     }
 
     // This should be an animation callback for more visually appealing jumps
