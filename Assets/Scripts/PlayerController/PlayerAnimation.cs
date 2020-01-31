@@ -65,6 +65,11 @@ public class PlayerAnimation : MonoBehaviour
         return m_hasSpeedPower;
     }
 
+    public void GetFlag()
+    {
+        m_PlayerMovement.GetFlag();
+    }
+
     public void GoFaster()
     {
         StartCoroutine("DoubleUpSpeed");

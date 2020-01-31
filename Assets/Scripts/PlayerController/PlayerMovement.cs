@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float m_JumpHeight = 1.3f;
 
+    [SerializeField]
+    private GameObject m_TheFlag;
+
     private CharacterController m_CharacterController;
     private TextChanger m_textChanger;
 
@@ -40,10 +43,12 @@ public class PlayerMovement : MonoBehaviour
     private bool m_JumpedInCurrentFrame;
     private bool m_canDoubleSpeed;
     private bool m_canDoubleJump;
+    private bool m_hasFlag;
 
     void Start()
     {
         AetherInput.GetPlayerActions().Jump.performed += HandleJump;
+        AetherInput.GetPlayerActions().Fire.performed += HandleFlag;
         m_CharacterController = GetComponent<CharacterController>();
         m_textChanger = GetComponent<TextChanger>();
     }
@@ -98,6 +103,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         m_CharacterController.Move(new Vector3(xVelocity, yVelocity, zVelocity));
+    }
+
+    public void GetFlag()
+    {
+        m_hasFlag = true;
+        m_textChanger.IndicateFlag(m_hasFlag);
+    }
+
+    public void HandleFlag(InputAction.CallbackContext ctx)
+    {
+        ButtonControl button = ctx.control as ButtonControl;
+        if (!button.wasPressedThisFrame)
+            return;
+
+        if (!m_hasFlag)
+            return;
+
+        m_hasFlag = false;
+        m_textChanger.IndicateFlag(m_hasFlag);
+        Instantiate(m_TheFlag, transform.position+(transform.forward*2)+(transform.up), transform.rotation);
     }
 
     public void UpdateText() 

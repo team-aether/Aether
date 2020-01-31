@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedUpPower : MonoBehaviour
+public class FlagGetter : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,9 +16,9 @@ public class SpeedUpPower : MonoBehaviour
         {
             PlayerAnimation anim = c.GetComponent<PlayerAnimation>();
 
-            if (anim != null && !anim.hasSpeedPowerUp())
+            if (anim != null)
             {
-                anim.GoFaster();
+                anim.GetFlag();
                 Destroy(gameObject);
             }
         }
