@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private float m_JumpHeight = 1.3f;
 
     private CharacterController m_CharacterController;
+    private TextChanger m_textChanger;
 
     private Vector3 m_Velocity;
     private Vector2 m_LastKnownInput;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         AetherInput.GetPlayerActions().Jump.performed += HandleJump;
         m_CharacterController = GetComponent<CharacterController>();
+        m_textChanger = GetComponent<TextChanger>();
     }
 
     // Update is called once per frame
@@ -69,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
         HandleGravity();
         HandleMovement();
+        UpdateText();
 
         float t = Time.deltaTime;
         float t2 = t * t;
@@ -95,6 +98,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         m_CharacterController.Move(new Vector3(xVelocity, yVelocity, zVelocity));
+    }
+
+    public void UpdateText() 
+    {
+        m_textChanger.IndicateBoost(m_canDoubleSpeed, m_canDoubleJump);
     }
 
     private void LateUpdate()
