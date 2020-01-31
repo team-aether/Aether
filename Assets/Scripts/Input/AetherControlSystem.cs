@@ -57,6 +57,14 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""DefuseBomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""620e847d-ee7a-4f0f-ae7a-83627b6a2fe5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -310,6 +318,28 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""SetBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6eb49ca1-b210-4096-929d-e009868c1b03"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": ""Hold(duration=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DefuseBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""920254ff-660e-4605-945b-5d2e07c10435"",
+                    ""path"": ""<Keyboard>/rightAlt"",
+                    ""interactions"": ""Hold(duration=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DefuseBomb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -845,6 +875,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_SetBomb = m_Player.FindAction("SetBomb", throwIfNotFound: true);
+        m_Player_DefuseBomb = m_Player.FindAction("DefuseBomb", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -912,6 +943,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_SetBomb;
+    private readonly InputAction m_Player_DefuseBomb;
     public struct PlayerActions
     {
         private @AetherControlSystem m_Wrapper;
@@ -921,6 +953,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @SetBomb => m_Wrapper.m_Player_SetBomb;
+        public InputAction @DefuseBomb => m_Wrapper.m_Player_DefuseBomb;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -945,6 +978,9 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                 @SetBomb.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
                 @SetBomb.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
                 @SetBomb.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
+                @DefuseBomb.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefuseBomb;
+                @DefuseBomb.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefuseBomb;
+                @DefuseBomb.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDefuseBomb;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -964,6 +1000,9 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                 @SetBomb.started += instance.OnSetBomb;
                 @SetBomb.performed += instance.OnSetBomb;
                 @SetBomb.canceled += instance.OnSetBomb;
+                @DefuseBomb.started += instance.OnDefuseBomb;
+                @DefuseBomb.performed += instance.OnDefuseBomb;
+                @DefuseBomb.canceled += instance.OnDefuseBomb;
             }
         }
     }
@@ -1133,6 +1172,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSetBomb(InputAction.CallbackContext context);
+        void OnDefuseBomb(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
