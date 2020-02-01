@@ -14,11 +14,11 @@ public class SpeedUpPower : MonoBehaviour
     {
         if (c.CompareTag("Player"))
         {
-            PlayerAnimation anim = c.GetComponent<PlayerAnimation>();
+            PlayerPowerUps powerUps = c.GetComponent<PlayerPowerUps>();
 
-            if (anim != null && !anim.hasSpeedPowerUp())
+            if (powerUps != null && !powerUps.GetDoubleSpeed())
             {
-                anim.GoFaster();
+                powerUps.GoFaster();
                 Destroy(gameObject);
             }
         }

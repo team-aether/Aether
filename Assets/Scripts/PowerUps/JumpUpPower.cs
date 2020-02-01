@@ -12,15 +12,13 @@ public class JumpUpPower : MonoBehaviour
 
     void OnTriggerEnter(Collider c) 
     {
-        Debug.Log("XD");
-        Debug.Log(c);
         if (c.CompareTag("Player"))
         {
-            PlayerAnimation anim = c.GetComponent<PlayerAnimation>();
+            PlayerPowerUps powerUps = c.GetComponent<PlayerPowerUps>();
 
-            if (anim != null && !anim.hasJumpPowerUp())
+            if (powerUps != null && !powerUps.GetDoubleJump())
             {
-                anim.JumpHigher();
+                powerUps.JumpHigher();
                 Destroy(gameObject);
             }
         }

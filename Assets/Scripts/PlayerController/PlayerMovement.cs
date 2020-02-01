@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController m_CharacterController;
     private TextChanger m_textChanger;
+    private PlayerPowerUps m_PowerUps; 
+    private VelocityModifier m_VelocityModifier; 
 
     private Vector3 m_Velocity;
     private Vector2 m_LastKnownInput;
@@ -51,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         AetherInput.GetPlayerActions().Fire.performed += HandleFlag;
         m_CharacterController = GetComponent<CharacterController>();
         m_textChanger = GetComponent<TextChanger>();
+        m_PowerUps = GetComponent<PlayerPowerUps>();
+        m_VelocityModifier = GetComponent<VelocityModifier>();
     }
 
     // Update is called once per frame
@@ -76,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
         HandleGravity();
         HandleMovement();
-        UpdateText();
 
         float t = Time.deltaTime;
         float t2 = t * t;
@@ -86,21 +89,9 @@ public class PlayerMovement : MonoBehaviour
         float yVelocity = m_Velocity.y * t + 0.5f * GetGravityMagnitude() * t2; 
         float zVelocity = m_Velocity.z;
 
-        if (m_canDoubleSpeed)
-        {
-            xVelocity *= 2.0f;
-            zVelocity *= 2.0f;
-        }
-
-        if (m_canDoubleJump) 
-        {
-            if (yVelocity < 0) 
-            {
-                yVelocity *= 0.5f;
-            } else {
-                yVelocity *= 2.0f;
-            }
-        }
+        xVelocity = m_VelocityModifier.ModifyXVelocity(xVelocity, m_PowerUps);
+        yVelocity = m_VelocityModifier.ModifyYVelocity(yVelocity, m_PowerUps);
+        zVelocity = m_VelocityModifier.ModifyZVelocity(zVelocity, m_PowerUps);
 
         m_CharacterController.Move(new Vector3(xVelocity, yVelocity, zVelocity));
     }
@@ -123,11 +114,6 @@ public class PlayerMovement : MonoBehaviour
         m_hasFlag = false;
         m_textChanger.IndicateFlag(m_hasFlag);
         Instantiate(m_TheFlag, transform.position+(transform.forward*2)+(transform.up), transform.rotation);
-    }
-
-    public void UpdateText() 
-    {
-        m_textChanger.IndicateBoost(m_canDoubleSpeed, m_canDoubleJump);
     }
 
     private void LateUpdate()
