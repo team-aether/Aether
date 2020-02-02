@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 4526435887570520906}
   - component: {fileID: 4526435887570520905}
   - component: {fileID: 4526435887570520904}
+  - component: {fileID: 4307492236769079879}
   - component: {fileID: 6885833954806974500}
   - component: {fileID: 4526435887570521015}
   - component: {fileID: 3258896028733207787}
@@ -230,6 +231,19 @@ CharacterController:
   m_SkinWidth: 0.2
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &4307492236769079879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526435887570521012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c71c688b18ec544bbbfd0f8d7ac473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 4526435886887935273}
 --- !u!114 &6885833954806974500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bombPrefab: {fileID: 3896627581517248327, guid: aa1f9f9e9e3242948999f69e79014c4e,
     type: 3}
+  m_Clock: {fileID: 0}
 --- !u!114 &4526435887570521014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,22 +703,22 @@ PrefabInstance:
     - target: {fileID: 6079326829632867507, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.08487264
+      value: 0.08472651
       objectReference: {fileID: 0}
     - target: {fileID: 6079326829632867507, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.091213174
+      value: 0.10820169
       objectReference: {fileID: 0}
     - target: {fileID: 6079326829632867507, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0078025395
+      value: -0.0092557715
       objectReference: {fileID: 0}
     - target: {fileID: 6079326829632867507, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99217737
+      value: 0.9904687
       objectReference: {fileID: 0}
     - target: {fileID: 6079326829834129366, guid: 1fd3eb28b928bb94d9523b2e9a6d4c13,
         type: 3}
