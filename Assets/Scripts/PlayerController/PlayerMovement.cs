@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(PlayerNetworkHandler))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private PowerUpsManager m_PowerUps; 
     private VelocityModifier m_VelocityModifier; 
 
+    private PlayerNetworkHandler m_PlayerNetworkHandler;
+
     private Vector3 m_Velocity;
     private Vector2 m_LastKnownInput;
 
@@ -47,8 +49,12 @@ public class PlayerMovement : MonoBehaviour
     {
         AetherInput.GetPlayerActions().Jump.performed += HandleJump;
         m_CharacterController = GetComponent<CharacterController>();
+<<<<<<< HEAD
         m_PowerUps = GetComponent<PowerUpsManager>();
         m_VelocityModifier = GetComponent<VelocityModifier>();
+=======
+        m_PlayerNetworkHandler = GetComponent<PlayerNetworkHandler>();
+>>>>>>> ec0de922d333fbe2585701c764e1e2a33efb5445
     }
 
     // Update is called once per frame
@@ -77,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         float t = Time.deltaTime;
         float t2 = t * t;
+<<<<<<< HEAD
 
         float xVelocity = m_Velocity.x;
         float yVelocity = m_Velocity.y * t + 0.5f * GetGravityMagnitude() * t2; 
@@ -87,6 +94,12 @@ public class PlayerMovement : MonoBehaviour
         zVelocity = m_VelocityModifier.ModifyZVelocity(zVelocity, m_PowerUps);
 
         m_CharacterController.Move(new Vector3(xVelocity, yVelocity, zVelocity));
+=======
+        m_CharacterController.Move(new Vector3(m_Velocity.x, m_Velocity.y * t + 0.5f * GetGravityMagnitude() * t2, m_Velocity.z));
+
+        if (m_PlayerNetworkHandler.networkObject != null)
+            m_PlayerNetworkHandler.networkObject.position = transform.position;
+>>>>>>> ec0de922d333fbe2585701c764e1e2a33efb5445
     }
 
     private void LateUpdate()
