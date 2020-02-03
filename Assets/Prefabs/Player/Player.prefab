@@ -90,6 +90,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4526435887570520906}
   - component: {fileID: 4526435887570520905}
+  - component: {fileID: 5872245660272572711}
+  - component: {fileID: 6714082541703566143}
   - component: {fileID: 4526435887570520904}
   - component: {fileID: 4526435887570521015}
   - component: {fileID: 4526435887570521013}
@@ -142,6 +144,30 @@ MonoBehaviour:
   m_NetworkTogglableScripts:
   - {fileID: 3333240648029924888}
   - {fileID: 6017284434089201888}
+--- !u!114 &5872245660272572711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526435887570521012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8664a9f8221f54540a2d14fec0ab2ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6714082541703566143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526435887570521012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f61e6f3c0d2c94fbaad0417e8517b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &4526435887570520904
 CharacterController:
   m_ObjectHideFlags: 0
@@ -178,6 +204,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3072
   m_Gravity: -20
+  m_FallingGravityMultiplier: 2
   m_JumpHeight: 2.5
 --- !u!114 &4526435887570521013
 MonoBehaviour:
