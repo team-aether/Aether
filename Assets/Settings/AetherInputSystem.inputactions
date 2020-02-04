@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "SetBomb",
+                    "type": "Button",
+                    "id": "2bf5fb92-bcd8-4d0c-b733-d3ed0939c7e5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -278,6 +286,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cb645a0-47ca-45ca-a10f-e8c8976ea887",
+                    "path": "<Keyboard>/b",
+                    "interactions": "Hold(duration=2)",
+                    "processors": "",
+                    "groups": "XR;Keyboard&Mouse",
+                    "action": "SetBomb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

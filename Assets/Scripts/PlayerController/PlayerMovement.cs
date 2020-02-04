@@ -39,17 +39,28 @@ public class PlayerMovement : MonoBehaviour
     private float m_LandingTime = 0;
     private bool m_IsMidAir;
     private bool m_JumpedInCurrentFrame;
+    private bool m_IsParalyzed;
 
     void Start()
     {
         AetherInput.GetPlayerActions().Jump.performed += HandleJump;
         m_CharacterController = GetComponent<CharacterController>();
         m_PlayerNetworkHandler = GetComponent<PlayerNetworkHandler>();
+        m_IsParalyzed = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (m_IsParalyzed)
+        {
+            if(!GetIsGrounded())
+            {
+                m_CharacterController.Move(new Vector3(-1.0f, -1.0f, -1.0f));
+            }
+            return;
+        }
+
         if (GetIsGrounded())
         {
             // Gravity should not accumulate when player is grounded. We set velocity to -2 instead of 0
@@ -155,5 +166,15 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2 * m_Gravity);
+    }
+
+    public void SetParalyze()
+    {
+        m_IsParalyzed = true;
+    }
+
+    public void ResetParalyze()
+    {
+        m_IsParalyzed = false;
     }
 }

@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4526435887570520906}
   - component: {fileID: 4526435887570520905}
+  - component: {fileID: 5727647879168221357}
   - component: {fileID: 4526435887570520904}
   - component: {fileID: 4526435887570521015}
   - component: {fileID: 4526435887570521013}
@@ -142,6 +143,19 @@ MonoBehaviour:
   m_NetworkTogglableScripts:
   - {fileID: 3333240648029924888}
   - {fileID: 6017284434089201888}
+--- !u!114 &5727647879168221357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526435887570521012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a912c85faa2ae48825d3f06917f98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BombPrefab: {fileID: 0}
 --- !u!143 &4526435887570520904
 CharacterController:
   m_ObjectHideFlags: 0
@@ -178,6 +192,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3072
   m_Gravity: -20
+  m_FallingGravityMultiplier: 2
   m_JumpHeight: 2.5
 --- !u!114 &4526435887570521013
 MonoBehaviour:
