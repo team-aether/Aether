@@ -11,7 +11,7 @@ public class SpeedPowerUp : MonoBehaviour
         {
             PowerUpsManager manager = c.GetComponent<PowerUpsManager>();
 
-            if (manager != null && !manager.GetDoubleSpeed())
+            if (manager != null && !manager.HasSpeedPowerUp())
             {
                 manager.GoFaster();
                 Destroy(gameObject);

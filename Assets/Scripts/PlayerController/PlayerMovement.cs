@@ -31,9 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerNetworkHandler m_PlayerNetworkHandler;
 
-    private PowerUpsManager m_PowerUps;
-    private VelocityModifier m_VelocityModifier;
-
     private Vector3 m_Velocity;
     private Vector2 m_LastKnownInput;
 
@@ -42,17 +39,15 @@ public class PlayerMovement : MonoBehaviour
     private float m_LandingTime = 0;
     private bool m_IsMidAir;
     private bool m_JumpedInCurrentFrame;
-    private bool m_canDoubleSpeed;
-    private bool m_canDoubleJump;
-    private bool m_hasFlag;
+
+    private bool m_HasSpeedPowerUp;
+    private bool m_HasJumpPowerUp;
 
     void Start()
     {
         AetherInput.GetPlayerActions().Jump.performed += HandleJump;
         m_CharacterController = GetComponent<CharacterController>();
         m_PlayerNetworkHandler = GetComponent<PlayerNetworkHandler>();
-        m_PowerUps = GetComponent<PowerUpsManager>();
-        m_VelocityModifier = GetComponent<VelocityModifier>();
     }
 
     // Update is called once per frame
@@ -86,9 +81,16 @@ public class PlayerMovement : MonoBehaviour
         float yVelocity = m_Velocity.y * t + 0.5f * GetGravityMagnitude() * t2;
         float zVelocity = m_Velocity.z;
 
-        xVelocity = m_VelocityModifier.ModifyXVelocity(xVelocity, m_PowerUps);
-        yVelocity = m_VelocityModifier.ModifyYVelocity(yVelocity, m_PowerUps);
-        zVelocity = m_VelocityModifier.ModifyZVelocity(zVelocity, m_PowerUps);
+        if (m_HasSpeedPowerUp)
+        {
+            xVelocity = ModifyXVelocity(xVelocity);
+            zVelocity = ModifyZVelocity(zVelocity);
+        }
+
+        if (m_HasJumpPowerUp)
+        {
+            yVelocity = ModifyYVelocity(yVelocity);
+        }
 
         m_CharacterController.Move(new Vector3(xVelocity, yVelocity, zVelocity));
 
@@ -172,5 +174,64 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         m_Velocity.y = Mathf.Sqrt(m_JumpHeight * -2 * m_Gravity);
+    }
+
+    // SETTERS FOR MOVEMENT POWER UPS
+    public void SetSpeedPowerUpStateTrue()
+    {
+        m_HasSpeedPowerUp = true;
+    }
+
+    public void SetJumpPowerUpStateTrue()
+    {
+        m_HasJumpPowerUp = true;
+    }
+
+    public void SetSpeedPowerUpStateFalse()
+    {
+        m_HasSpeedPowerUp = false;
+    }
+
+    public void SetJumpPowerUpStateFalse()
+    {
+        m_HasJumpPowerUp = false;
+    }
+
+    // Velocity modifiers for Speed powerups.
+    public float ModifyXVelocity(float velocityVector)
+    {
+        if (m_HasSpeedPowerUp)
+        {
+            velocityVector *= 2.0f;
+        }
+
+        return velocityVector;
+    }
+
+    public float ModifyYVelocity(float velocityVector)
+    {
+        if (m_HasJumpPowerUp)
+        {
+            if (velocityVector < 0)
+            {
+                velocityVector *= 0.5f;
+            }
+            else
+            {
+                velocityVector *= 2.0f;
+            }
+        }
+
+        return velocityVector;
+    }
+
+    public float ModifyZVelocity(float velocityVector)
+    {
+        if (m_HasSpeedPowerUp)
+        {
+            velocityVector *= 2.0f;
+        }
+
+        return velocityVector;
     }
 }

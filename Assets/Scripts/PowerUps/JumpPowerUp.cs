@@ -10,7 +10,7 @@ public class JumpPowerUp : MonoBehaviour
         {
             PowerUpsManager manager = c.GetComponent<PowerUpsManager>();
 
-            if (manager != null && !manager.GetDoubleJump())
+            if (manager != null && !manager.HasJumpPowerUp())
             {
                 manager.JumpHigher();
                 Destroy(gameObject);
