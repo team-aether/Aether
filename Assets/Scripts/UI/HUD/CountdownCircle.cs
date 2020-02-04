@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class CountdownCircle : MonoBehaviour
 {
     public Image m_CountdownBar;
-    public Image m_Center;    
+    public Image m_Center; 
+    public RawImage m_Icon;    
     private const float m_BuffDuration = 5.0f;
 
     public float m_CurrentAmount;
@@ -17,7 +18,7 @@ public class CountdownCircle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCountdown();
+        EnableCountdown(true);
     }
 
     // Update is called once per frame
@@ -33,6 +34,9 @@ public class CountdownCircle : MonoBehaviour
         if (m_CurrentAmount > 0) {
             m_CurrentAmount -= m_Speed * Time.deltaTime;
         }
+        else {
+            EnableCountdown(false);
+        }
 
         m_CountdownBar.fillAmount = m_CurrentAmount / 100;
     }
@@ -42,17 +46,6 @@ public class CountdownCircle : MonoBehaviour
         m_Activated = canCountdown;
         m_CountdownBar.enabled = canCountdown;
         m_Center.enabled = canCountdown;
-    }
-
-    public void StartCountdown() 
-    {
-        StartCoroutine("ExecuteCountdown");
-    }
-
-    IEnumerator ExecuteCountdown()
-    {
-        EnableCountdown(true);
-        yield return new WaitForSeconds(m_BuffDuration);
-        EnableCountdown(false);
+        m_Icon.enabled = canCountdown;
     }
 }
