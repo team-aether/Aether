@@ -57,6 +57,14 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""SwitchPickUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b1dd0ae-04ab-4fb0-8b11-bbcdfba62714"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -306,10 +314,43 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""a6c55c43-037e-4fe8-b458-b19212d1edc3"",
                     ""path"": ""<Keyboard>/b"",
-                    ""interactions"": ""Hold(duration=3)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SetBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c484777b-19f3-4fe3-a5ac-def5ccfc4f43"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SetBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22281ce8-f1e2-4be1-9cc2-1f177ec8b028"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchPickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1cac5f05-7c1d-4e3f-af44-26b922f13fd7"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchPickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -845,6 +886,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_SetBomb = m_Player.FindAction("SetBomb", throwIfNotFound: true);
+        m_Player_SwitchPickUp = m_Player.FindAction("SwitchPickUp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -912,6 +954,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_SetBomb;
+    private readonly InputAction m_Player_SwitchPickUp;
     public struct PlayerActions
     {
         private @AetherControlSystem m_Wrapper;
@@ -921,6 +964,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @SetBomb => m_Wrapper.m_Player_SetBomb;
+        public InputAction @SwitchPickUp => m_Wrapper.m_Player_SwitchPickUp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -945,6 +989,9 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                 @SetBomb.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
                 @SetBomb.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
                 @SetBomb.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
+                @SwitchPickUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchPickUp;
+                @SwitchPickUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchPickUp;
+                @SwitchPickUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchPickUp;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -964,6 +1011,9 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                 @SetBomb.started += instance.OnSetBomb;
                 @SetBomb.performed += instance.OnSetBomb;
                 @SetBomb.canceled += instance.OnSetBomb;
+                @SwitchPickUp.started += instance.OnSwitchPickUp;
+                @SwitchPickUp.performed += instance.OnSwitchPickUp;
+                @SwitchPickUp.canceled += instance.OnSwitchPickUp;
             }
         }
     }
@@ -1133,6 +1183,7 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSetBomb(InputAction.CallbackContext context);
+        void OnSwitchPickUp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

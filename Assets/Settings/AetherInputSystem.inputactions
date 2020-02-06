@@ -44,6 +44,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "SwitchPickUp",
+                    "type": "Button",
+                    "id": "4b1dd0ae-04ab-4fb0-8b11-bbcdfba62714",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -293,10 +301,43 @@
                     "name": "",
                     "id": "a6c55c43-037e-4fe8-b458-b19212d1edc3",
                     "path": "<Keyboard>/b",
-                    "interactions": "Hold(duration=3)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SetBomb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c484777b-19f3-4fe3-a5ac-def5ccfc4f43",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetBomb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22281ce8-f1e2-4be1-9cc2-1f177ec8b028",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchPickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cac5f05-7c1d-4e3f-af44-26b922f13fd7",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchPickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
