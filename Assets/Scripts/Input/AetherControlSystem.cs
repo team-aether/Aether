@@ -57,6 +57,22 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""LaunchMeteor"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6ceacf3-e928-4f63-af94-a834b11e20f5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""LaunchForcefield"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ab4c3fe-e4d1-4d22-b2ce-3e03d660aad3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -310,6 +326,28 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SetBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bcc7b6e4-5cec-4def-9763-2a96902a9973"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaunchMeteor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6283db26-f5e4-4cd7-8acc-e7c1ae8e079f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaunchForcefield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -845,6 +883,8 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_SetBomb = m_Player.FindAction("SetBomb", throwIfNotFound: true);
+        m_Player_LaunchMeteor = m_Player.FindAction("LaunchMeteor", throwIfNotFound: true);
+        m_Player_LaunchForcefield = m_Player.FindAction("LaunchForcefield", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -912,6 +952,8 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_SetBomb;
+    private readonly InputAction m_Player_LaunchMeteor;
+    private readonly InputAction m_Player_LaunchForcefield;
     public struct PlayerActions
     {
         private @AetherControlSystem m_Wrapper;
@@ -921,6 +963,8 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @SetBomb => m_Wrapper.m_Player_SetBomb;
+        public InputAction @LaunchMeteor => m_Wrapper.m_Player_LaunchMeteor;
+        public InputAction @LaunchForcefield => m_Wrapper.m_Player_LaunchForcefield;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -945,6 +989,12 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                 @SetBomb.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
                 @SetBomb.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
                 @SetBomb.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSetBomb;
+                @LaunchMeteor.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaunchMeteor;
+                @LaunchMeteor.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaunchMeteor;
+                @LaunchMeteor.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaunchMeteor;
+                @LaunchForcefield.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaunchForcefield;
+                @LaunchForcefield.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaunchForcefield;
+                @LaunchForcefield.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLaunchForcefield;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -964,6 +1014,12 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                 @SetBomb.started += instance.OnSetBomb;
                 @SetBomb.performed += instance.OnSetBomb;
                 @SetBomb.canceled += instance.OnSetBomb;
+                @LaunchMeteor.started += instance.OnLaunchMeteor;
+                @LaunchMeteor.performed += instance.OnLaunchMeteor;
+                @LaunchMeteor.canceled += instance.OnLaunchMeteor;
+                @LaunchForcefield.started += instance.OnLaunchForcefield;
+                @LaunchForcefield.performed += instance.OnLaunchForcefield;
+                @LaunchForcefield.canceled += instance.OnLaunchForcefield;
             }
         }
     }
@@ -1133,6 +1189,8 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSetBomb(InputAction.CallbackContext context);
+        void OnLaunchMeteor(InputAction.CallbackContext context);
+        void OnLaunchForcefield(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
