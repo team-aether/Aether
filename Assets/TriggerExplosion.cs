@@ -13,8 +13,9 @@ public class TriggerExplosion : MonoBehaviour
         {
             Debug.Log("METEORRRRR");
             GameObject meteorHit = Instantiate(m_Destruction, other.transform.position, Quaternion.identity);
+            Debug.Log(meteorHit.transform.position);
             Destroy(other.gameObject);
-            Destroy(meteorHit, 1.5f);
+            Destroy(meteorHit, 5f);
         }
     }
 }

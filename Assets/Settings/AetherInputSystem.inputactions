@@ -44,6 +44,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "LaunchMeteor",
+                    "type": "Button",
+                    "id": "c6ceacf3-e928-4f63-af94-a834b11e20f5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "LaunchForcefield",
+                    "type": "Button",
+                    "id": "3ab4c3fe-e4d1-4d22-b2ce-3e03d660aad3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -297,6 +313,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SetBomb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bcc7b6e4-5cec-4def-9763-2a96902a9973",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LaunchMeteor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6283db26-f5e4-4cd7-8acc-e7c1ae8e079f",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LaunchForcefield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
