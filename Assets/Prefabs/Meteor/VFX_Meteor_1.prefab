@@ -9630,7 +9630,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8, z: 0.8}
+  m_Size: {x: 0.8, y: 0.6, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &558512063417001462
 AudioSource:
@@ -14552,18 +14552,24 @@ PrefabInstance:
     - target: {fileID: 2204497357526001846, guid: 1abb32717bbd51c4cab0e0081170b10c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 55
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2204497357526001846, guid: 1abb32717bbd51c4cab0e0081170b10c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 55
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2204497357526001846, guid: 1abb32717bbd51c4cab0e0081170b10c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 55
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2204497357526771862, guid: 1abb32717bbd51c4cab0e0081170b10c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -1365823602920824337, guid: e8d67d7897f10e6459005fa5578a39fe,
+        type: 3}
     - target: {fileID: 2204497357527771734, guid: 1abb32717bbd51c4cab0e0081170b10c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
