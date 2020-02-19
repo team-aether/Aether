@@ -29,7 +29,6 @@ public abstract class PowerUpBase : MonoBehaviour
 
     private void PlayPickUpSound()
     {
-        AudioManager.m_Instance.PlaySound("MAGIC_Powerup", 1.2f, 1.2f);
         m_TimeOfActivation = Time.time;
         OnPowerUpActivated();
     }
