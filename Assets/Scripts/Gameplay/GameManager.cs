@@ -1,34 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 //It's a singleton so call this using GameManager.Instance.
 public class GameManager : Singleton<GameManager>
 {
     public static int m_WinningScore = 3;
 
+    public List<GameObject> m_TerrainWhereItemsSpawn;
     private List<GameObject> m_RedTeamPlayers;
     private List<GameObject> m_BlueTeamPlayers;
+    public List<GameObject> m_SpawnedItems;
 
     private int m_RedTeamScore, m_BlueTeamScore;
-
-    public Int32 GoalsScoredRed
-    {
-        get => m_RedTeamScore;
-        set => m_RedTeamScore = value;
-    }
-
-    public Int32 GoalsScoredBlue
-    {
-        get => m_BlueTeamScore;
-        set => m_BlueTeamScore = value;
-    }
+    public int goalsToWin = 3;
+    public float itemSpawnDelay = 30;
     
     public void InitPlayers(List<GameObject> playersInTeamRed, List<GameObject> playersInTeamBlue)
     {
         this.m_RedTeamPlayers = playersInTeamRed;
         this.m_BlueTeamPlayers = playersInTeamBlue;
+    }
+    
+    private IEnumerator SpawnItems()
+    {
+        if (m_SpawnedItems == null || m_TerrainWhereItemsSpawn == null)
+        {
+            yield break;
+        }
+        //Handle spawning items here
+        GameObject item = m_SpawnedItems[Random.Range(0, m_SpawnedItems.Count)];
+        Vector3 spawnPos = m_TerrainWhereItemsSpawn[Random.Range(0, m_TerrainWhereItemsSpawn.Count)].transform.position;
+        //itemsToBeSpawned
+        Instantiate(item, spawnPos, item.transform.rotation);
+        yield return new WaitForSeconds(itemSpawnDelay);
+        StartCoroutine(SpawnItems());
     }
 
     private void Start()
@@ -51,7 +57,7 @@ public class GameManager : Singleton<GameManager>
         CheckWin();
     }
     
-    public void IncrementScore(Boolean isTeamRed)
+    public void IncrementScore(bool isTeamRed)
     {
         if (isTeamRed)
         {
@@ -76,14 +82,31 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void Win(Boolean isTeamRed)
+    public void Win(bool isTeamRed)
     {
         //restartPanel.SetActive(true);
+        //enabled = false;
+        //StartCoroutine("StopRestart");
+    }
+
+    /*public void GameOver(int index)
+    {
+        //losePanel.SetActive(true);
         enabled = false;
+        string loseText = null;
+    
         StartCoroutine("StopRestart");
     }
 
-    public void GameOver(int index)
+    IEnumerator StopRestart()
     {
-    }
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        restartPanel.SetActive(false);
+        // Time.timeScale = 1;
+        enabled = true;
+    }*/
 }
+
+
+
