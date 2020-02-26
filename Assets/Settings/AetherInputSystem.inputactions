@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SpellCast",
+                    "type": "Button",
+                    "id": "ccf93fa3-4324-4c2d-87b9-45fc77ab8cbe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -335,6 +343,17 @@
                     "processors": "",
                     "groups": "Gamepad;Joystick",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95b9ad90-4879-4fe7-9597-1d60d5846e8f",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellCast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
