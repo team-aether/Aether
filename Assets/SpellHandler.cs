@@ -17,7 +17,6 @@ public class SpellHandler : MonoBehaviour
     // Update is called once per frame
     void HandleSpell(InputAction.CallbackContext ctx)
     {
-        m_SpellPrefab.SetActive(true);
-        m_SpellPrefab.GetComponent<ParticleSystem>().Play();
+        Instantiate(m_SpellPrefab, this.transform);
     }
 }
