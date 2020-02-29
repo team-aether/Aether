@@ -11,7 +11,7 @@ public class SpellHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AetherInput.GetPlayerActions().SpellCast.performed += HandleSpell;
+        //AetherInput.GetPlayerActions().SpellCast.performed += HandleSpell;
     }
 
     // Update is called once per frame

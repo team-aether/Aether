@@ -73,14 +73,6 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""SpellCast"",
-                    ""type"": ""Button"",
-                    ""id"": ""ccf93fa3-4324-4c2d-87b9-45fc77ab8cbe"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -356,17 +348,6 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad;Joystick"",
                     ""action"": ""Block"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""95b9ad90-4879-4fe7-9597-1d60d5846e8f"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpellCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -904,7 +885,6 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         m_Player_Sheathe = m_Player.FindAction("Sheathe", throwIfNotFound: true);
         m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
-        m_Player_SpellCast = m_Player.FindAction("SpellCast", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -974,7 +954,6 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Sheathe;
     private readonly InputAction m_Player_Roll;
     private readonly InputAction m_Player_Block;
-    private readonly InputAction m_Player_SpellCast;
     public struct PlayerActions
     {
         private @AetherControlSystem m_Wrapper;
@@ -986,7 +965,6 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         public InputAction @Sheathe => m_Wrapper.m_Player_Sheathe;
         public InputAction @Roll => m_Wrapper.m_Player_Roll;
         public InputAction @Block => m_Wrapper.m_Player_Block;
-        public InputAction @SpellCast => m_Wrapper.m_Player_SpellCast;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1017,9 +995,6 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                 @Block.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlock;
                 @Block.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlock;
                 @Block.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBlock;
-                @SpellCast.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpellCast;
-                @SpellCast.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpellCast;
-                @SpellCast.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpellCast;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1045,9 +1020,6 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
                 @Block.started += instance.OnBlock;
                 @Block.performed += instance.OnBlock;
                 @Block.canceled += instance.OnBlock;
-                @SpellCast.started += instance.OnSpellCast;
-                @SpellCast.performed += instance.OnSpellCast;
-                @SpellCast.canceled += instance.OnSpellCast;
             }
         }
     }
@@ -1219,7 +1191,6 @@ public class @AetherControlSystem : IInputActionCollection, IDisposable
         void OnSheathe(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
-        void OnSpellCast(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
