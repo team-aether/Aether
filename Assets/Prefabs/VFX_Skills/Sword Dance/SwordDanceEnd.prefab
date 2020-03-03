@@ -4781,7 +4781,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1527ae2bfa2902f4aa26e90dbf40dae9, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9544,7 +9544,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c90a3c23b0fc60244a9f3588ff9e721f, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14356,7 +14356,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ccdb7eafa7935964ba229a801727cde2, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14412,7 +14412,7 @@ GameObject:
   - component: {fileID: 3507127482374143825}
   - component: {fileID: 3637281042493721259}
   - component: {fileID: 3638037932742835775}
-  - component: {fileID: 3544194803529036179}
+  - component: {fileID: 1604863713384395606}
   m_Layer: 0
   m_Name: SwordDanceEnd
   m_TagString: Untagged
@@ -19263,7 +19263,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 225fe34f2efbd4e48b47d0c711f0703e, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -19308,7 +19308,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &3544194803529036179
+--- !u!114 &1604863713384395606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19317,18 +19317,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3512541939639496737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a959a1b0b8414d4fb8a68bdc12d69ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e20e7e75eed88a40b0ac83ab22672bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectsOnCollision:
-  - {fileID: 1106083537938030, guid: 68ad232820027fb46ab18b209499dc65, type: 3}
-  DestroyTimeDelay: 2
-  UseWorldSpacePosition: 1
-  Offset: 0
-  rotationOffset: {x: 90, y: 0, z: 0}
-  useOnlyRotationOffset: 0
-  UseFirePointRotation: 0
-  DestoyMainEffect: 0
+  m_EffectOnCollision: {fileID: 0}
+  m_TimeDelayBeforeDestroy: 0
 --- !u!1 &3512691292026765669
 GameObject:
   m_ObjectHideFlags: 0
@@ -24105,7 +24098,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c90a3c23b0fc60244a9f3588ff9e721f, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
