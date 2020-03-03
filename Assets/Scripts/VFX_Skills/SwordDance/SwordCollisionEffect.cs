@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * Put script into SwordDanceEnd, for creation of sword craters on collision.
- * 
+ * Put script into SwordDanceEnd, for creation of sword craters when
+ * swords collide into the level.
  */
 public class SwordCollisionEffect : MonoBehaviour
 {

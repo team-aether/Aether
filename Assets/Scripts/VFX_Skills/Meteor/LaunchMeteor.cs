@@ -14,7 +14,7 @@ public class LaunchMeteor : MonoBehaviour
     private void Start()
     {
         // For test purpose
-        // AetherInput.GetPlayerActions().Fire.performed += HandleLaunchMeteor;
+        //AetherInput.GetPlayerActions().Fire.performed += HandleLaunchMeteor;
     }
 
     // Code below can be used to launch meteor into the scene, with respect to the reticle at centre of screen.

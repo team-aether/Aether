@@ -119,11 +119,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_MeteorRock
       objectReference: {fileID: 0}
-    - target: {fileID: 9001122371360652556, guid: f91090d2c49680e4db25af20d0fdecbf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f91090d2c49680e4db25af20d0fdecbf, type: 3}
 --- !u!4 &1725495890216326299 stripped
@@ -139,11 +134,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7717015017761246414}
     m_Modifications:
-    - target: {fileID: 4935373845190722477, guid: b0e0056f5bdb8bd4188e1c65397abbb2,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 4935373845373243776, guid: b0e0056f5bdb8bd4188e1c65397abbb2,
         type: 3}
       propertyPath: m_Name
@@ -203,6 +193,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578782553844449846, guid: b0e0056f5bdb8bd4188e1c65397abbb2,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124105946940128963, guid: b0e0056f5bdb8bd4188e1c65397abbb2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124105946940128963, guid: b0e0056f5bdb8bd4188e1c65397abbb2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0e0056f5bdb8bd4188e1c65397abbb2, type: 3}

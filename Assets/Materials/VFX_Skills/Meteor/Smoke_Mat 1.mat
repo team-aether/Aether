@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Smoke_Mat 1
-  m_Shader: {fileID: -6465566751694194690, guid: e7b1a5cf811ef904ea43c3047e2b697b,
+  m_Shader: {fileID: -6465566751694194690, guid: 1dd54d9762020dd4eb9fc5f15264bb8f,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -36,6 +36,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_98EF2BCD:
+        m_Texture: {fileID: 2800000, guid: 131b7aa88767d9e4d9eef49c28b79b9d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_D9F82A3E:
         m_Texture: {fileID: 2800000, guid: 131b7aa88767d9e4d9eef49c28b79b9d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -245,6 +249,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - Color_11AE9EF7: {r: 95.87451, g: 95.87451, b: 95.87451, a: 0.70980394}
     - Color_65CDBF53: {r: 95.87451, g: 95.87451, b: 95.87451, a: 0.70980394}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}

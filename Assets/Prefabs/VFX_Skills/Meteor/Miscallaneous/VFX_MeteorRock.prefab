@@ -103,7 +103,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4962,6 +4962,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9001122371360652547}
     m_Modifications:
+    - target: {fileID: 3388049662290958726, guid: eceb4f0b3de5471409f984ab9046acf6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388049662290958726, guid: eceb4f0b3de5471409f984ab9046acf6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388049662290958726, guid: eceb4f0b3de5471409f984ab9046acf6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388049662290958726, guid: eceb4f0b3de5471409f984ab9046acf6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388049662290958726, guid: eceb4f0b3de5471409f984ab9046acf6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388049662290958726, guid: eceb4f0b3de5471409f984ab9046acf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388049662290958726, guid: eceb4f0b3de5471409f984ab9046acf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5682373281404848799, guid: eceb4f0b3de5471409f984ab9046acf6,
         type: 3}
       propertyPath: m_Name

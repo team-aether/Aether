@@ -14,7 +14,8 @@ public class SpellHandler : MonoBehaviour
 
     void Start()
     {
-        // AetherInput.GetPlayerActions().Fire.performed += HandleSpell;
+        // For play test purpose
+        //AetherInput.GetPlayerActions().Fire.performed += HandleSpell;
     }
 
     // For test purpose only
