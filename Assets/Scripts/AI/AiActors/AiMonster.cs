@@ -10,16 +10,7 @@ public class AiMonster : AiActor, Attacker, ICanInteract
     
     [SerializeField] 
     private Transform[] m_AttackSource;
-
-    [SerializeField] 
-    private float m_DamageAmount = 10f;
-
-    [SerializeField] 
-    private float m_DamageRadius = 5f;
-
-    [SerializeField] 
-    private float m_DamageDuration = 0.2f;
-
+    
     private bool m_isDead = false;
     public bool DEBUG_DEATH = false;
     public bool DEBUG_GOTHIT = false;
@@ -27,14 +18,26 @@ public class AiMonster : AiActor, Attacker, ICanInteract
     private HealthHandler m_HealthHandler;
 
     private bool m_CanAttack = true;
+    private string m_AttackThisFrame = "";
     private bool m_IsStun = false;
     private SkinnedMeshRenderer[] m_MonsterSkin;
     private ParticleSystem[] m_DeathParticles;
+    
     private void OnTriggerEnter(Collider c)
     {
         if (c.GetComponent<Player>() != null)
         {
-            m_NearestPlayer = c.transform;
+            
+            if(m_NearestPlayer!=null)
+            {
+                if (Vector3.Distance(m_NearestPlayer.position, gameObject.transform.position) > Vector3.Distance(c.transform.position, gameObject.transform.position))
+                    m_NearestPlayer = c.transform;
+            } 
+            else 
+            {
+                m_NearestPlayer = c.transform;
+            }
+            
             SetNearPlayer();
         }
 
@@ -43,6 +46,20 @@ public class AiMonster : AiActor, Attacker, ICanInteract
 
     private void OnTriggerStay(Collider c)
     {
+        if (c.GetComponent<Player>() != null)
+        {
+
+            if(m_NearestPlayer!=null)
+            {
+                if (Vector3.Distance(m_NearestPlayer.position, gameObject.transform.position) > Vector3.Distance(c.transform.position, gameObject.transform.position))
+                    m_NearestPlayer = c.transform;
+            } 
+            else
+            {
+                m_NearestPlayer = c.transform;
+            }
+
+        }
         InteractWith(c.GetComponent<IInteractable>(), InteractionType.INTERACTION_TRIGGER_STAY);
     }
 
@@ -71,10 +88,9 @@ public class AiMonster : AiActor, Attacker, ICanInteract
     {
         if (m_CanAttack)
         {
-            float attack = m_MonsterAnimation.RandomizeAttack()/2;
-            
+            float attack = m_MonsterAnimation.RandomizeAttack(out m_AttackThisFrame)/2;
+            Debug.Log("Aimonster " + m_AttackThisFrame);
             //logic for damaging the player here
-
             StartCoroutine(DealDamage(attack));
             StartCoroutine(SetCanAttack(attack + attackInterval));
             m_CanAttack = false;
@@ -85,8 +101,27 @@ public class AiMonster : AiActor, Attacker, ICanInteract
             yield return new WaitForSeconds(delay);
             DamageEntities();
         }
+    }
 
-        
+    public string GetAttack()
+    {
+        return m_AttackThisFrame;
+    }
+
+    public void ResetAttackThisFrame()
+    {
+        m_AttackThisFrame = "";
+    }
+
+    public AiAnimation GetMonsterAnimation()
+    {
+        return m_MonsterAnimation;
+    }
+
+    public void DisableAttack()
+    {
+        StopCoroutine("SetCanAttack");
+        m_CanAttack = false;
     }
     
     private void DamageEntities()
@@ -100,11 +135,15 @@ public class AiMonster : AiActor, Attacker, ICanInteract
         }
     }
     
-
+    bool once = true;
     private void SetNearPlayer()
     {
+        float animTime = 0;
         //alerts the animator if the player has entered the vicinity.
-        float animTime = m_MonsterAnimation.ReactToPlayer();
+        if(once){
+            animTime = m_MonsterAnimation.ReactToPlayer();
+            once = false; //This fix is flawed but hopefully will minimize bugs.
+        }
         StartCoroutine(SetAfterAnim(animTime));
         IEnumerator SetAfterAnim(float delay)
         {
@@ -141,6 +180,12 @@ public class AiMonster : AiActor, Attacker, ICanInteract
 
     public void OnDeath()
     {
+        // Disable all colliders
+        foreach (Collider c in GetComponentsInChildren<Collider>())
+        {
+            c.enabled = false;
+        }
+
         m_isDead = true;
         float deathAnimTime = m_MonsterAnimation.Death();
         m_StateMachineAnim.SetBool("dead", true);

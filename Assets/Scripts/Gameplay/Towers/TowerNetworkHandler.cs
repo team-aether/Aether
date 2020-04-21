@@ -42,17 +42,15 @@ public class TowerNetworkHandler : MonoBehaviour
 
     public void SignalEntry(int playerCount)
     {
-        if (playerCount == 1)
-            UIManager.Instance.UINotifySecondary("Starting checkpoint capture at 1x speed.");
-        //else
-        //    UIManager.Instance.UINotifySecondary("Capture rate increased. Now at " + playerCount + "x speed.");
+        if (!m_Tower.IsCaptured())
+            if (playerCount == 1)
+                UIManager.Instance.UINotifySecondary("Starting checkpoint capture.");
     }
 
     public void SignalExit(int playerCount)
     {
-        if (playerCount == 0)
-            UIManager.Instance.UINotifySecondary("Checkpoint capture stopped.");
-        //else
-        //    UIManager.Instance.UINotifySecondary("Capture rate decreased. Now at " + playerCount + "x speed.");
+        if (!m_Tower.IsCaptured())
+            if (playerCount == 0)
+                UIManager.Instance.UINotifySecondary("Checkpoint capture stopped.");
     }
 }

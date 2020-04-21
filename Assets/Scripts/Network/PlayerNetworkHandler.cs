@@ -68,7 +68,7 @@ public class PlayerNetworkHandler : MonoBehaviour
 
             // Fun misc
             if (m_PlayerAnimationLookat != null)
-            m_PlayerNetworkObject.lookatDir = m_PlayerAnimationLookat.GetLookatDirection();
+                m_PlayerNetworkObject.lookatDir = m_PlayerAnimationLookat.GetLookatDirection();
 
             if (m_PlayerCombatHandler.GetAttackedInCurrentFrame())
             {
@@ -126,7 +126,8 @@ public class PlayerNetworkHandler : MonoBehaviour
 
     public void TriggerDamaged()
     {
-        GetKnockBack();
+        if (m_PlayerNetworkObject != null && m_PlayerNetworkObject.IsOwner)
+            GetKnockBack();
     }
 
     public void TriggerJump()
@@ -208,7 +209,10 @@ public class PlayerNetworkHandler : MonoBehaviour
 
     private void GetKnockBack()
     {
-        StartCoroutine(m_PlayerMovement.Dash(-1 * transform.forward, 0, 0.5f, 10, () => { }));
+        if (m_PlayerCombatHandler.IsBlocking())
+            StartCoroutine(m_PlayerMovement.Dash(-1 * transform.forward, 0, 0.1f, 3, () => { }));
+        else
+            StartCoroutine(m_PlayerMovement.Dash(-1 * transform.forward, 0, 0.4f, 8, () => { }));
     }
 
 }

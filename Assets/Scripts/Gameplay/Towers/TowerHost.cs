@@ -6,7 +6,7 @@ using UnityEngine;
 public class TowerHost : MonoBehaviour, IInteractable
 {
     [SerializeField]
-    private float m_CapturePerPaxPerSecond = 2;
+    private float m_MaxCapturePerSecond = 5;
 
     private TowerBase m_Tower;
 
@@ -33,10 +33,10 @@ public class TowerHost : MonoBehaviour, IInteractable
             return;
 
         // Current rate of gauge shift
-        int captureMultiplier = m_PlayersInCaptureZone.Count;
+        float captureMultiplier = (float)m_PlayersInCaptureZone.Count / PlayerManager.Instance.GetPlayerCount();
 
         float captureGauge = m_Tower.GetCaptureGauge();
-        captureGauge += captureMultiplier * m_CapturePerPaxPerSecond * Time.deltaTime;
+        captureGauge += captureMultiplier * m_MaxCapturePerSecond * Time.deltaTime;
         m_Tower.UpdateCaptureGauge(captureGauge);
     }
 
@@ -83,7 +83,8 @@ public class TowerHost : MonoBehaviour, IInteractable
         {
             m_PlayersInCaptureZone.Add(player);
             m_CaptureCountChangeThisFrame++;
-            m_Tower.TowerEntered?.Invoke(m_Tower);
+            if (player == PlayerManager.Instance.GetLocalPlayer())
+                m_Tower.TowerEntered?.Invoke(m_Tower);
         }
     }
 
@@ -93,7 +94,8 @@ public class TowerHost : MonoBehaviour, IInteractable
         {
             m_PlayersInCaptureZone.Remove(player);
             m_CaptureCountChangeThisFrame--;
-            m_Tower.TowerExited?.Invoke();
+            if (player == PlayerManager.Instance.GetLocalPlayer())
+                m_Tower.TowerExited?.Invoke();
         }
     }
 }

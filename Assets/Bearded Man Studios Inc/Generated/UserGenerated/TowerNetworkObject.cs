@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BeardedManStudios.Forge.Networking.Generated
 {
-	[GeneratedInterpol("{\"inter\":[0.15]")]
+	[GeneratedInterpol("{\"inter\":[0]")]
 	public partial class TowerNetworkObject : NetworkObject
 	{
 		public const int IDENTITY = 16;
@@ -18,7 +18,7 @@ namespace BeardedManStudios.Forge.Networking.Generated
 		[ForgeGeneratedField]
 		private float _captureGauge;
 		public event FieldEvent<float> captureGaugeChanged;
-		public InterpolateFloat captureGaugeInterpolation = new InterpolateFloat() { LerpT = 0.15f, Enabled = true };
+		public InterpolateFloat captureGaugeInterpolation = new InterpolateFloat() { LerpT = 0f, Enabled = false };
 		public float captureGauge
 		{
 			get { return _captureGauge; }

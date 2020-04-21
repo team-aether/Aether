@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UI_Allpha_NoDepth
-  m_Shader: {fileID: -6465566751694194690, guid: a1dfed88d8158514fb4062a0a4ccd743,
+  m_Name: UI_Alpha_text
+  m_Shader: {fileID: -6465566751694194690, guid: 20395451898c7594984b1a3e5a91b969,
     type: 3}
   m_ShaderKeywords: _BLENDMODE_ALPHA _DOUBLESIDED_ON _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 1
@@ -151,6 +151,7 @@ Material:
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
     - _CoatMask: 0
+    - _ColorMask: 15
     - _ColorMode: 0
     - _Cull: 2
     - _CullMode: 0
@@ -241,6 +242,10 @@ Material:
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
     - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
     - _StencilRef: 0
     - _StencilRefDepth: 32
     - _StencilRefDistortionVec: 64
@@ -269,6 +274,7 @@ Material:
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
+    - _UseUIAlphaClip: 0
     - _ZTestDepthEqualForOpaque: 8
     - _ZTestGBuffer: 4
     - _ZTestModeDistortion: 4
